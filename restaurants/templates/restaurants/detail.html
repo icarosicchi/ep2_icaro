@@ -1,13 +1,16 @@
-{% extends 'base.html' %} {% block title %} {{ movie.name }} ({{
-    movie.release_year }} {% endblock title %} {% block content %}
-    <h2>Detalhes do Filme {{ movie.name }} ({{ movie.release_year }})</h2>
-    
-    <section class="dados-de-filme">
-      <img src="{{ movie.poster_url }}" alt="Poster do filme {{ movie.name}}" />
-      <ul>
-        <li>Nome: {{ movie.name }}</li>
-        <li>Ano de Lançamento: {{ movie.release_year }}</li>
-      </ul>
-    </section>
-    
-    {% endblock content %}
+{% extends 'base.html' %} {% block title %} {{ post.title }} ({{
+post.post_date }} {% endblock title %} {% block content %}
+<h2>Detalhes do Restaurante {{ post.title }}</h2>
+
+<section class="dados-de-filme">
+  <img src="{{ post.poster_url }}" alt="Foto do Restaurante {{ post.title}}" />
+  <ul>
+    <li>Nome: {{ post.title }}</li>
+    <li>Descrição: {{ post.content }}</li>
+    <li>Data de Postagem: {{ post.post_date }}</li>
+    <li><a href="{% url 'restaurants:update' post.id %}">Editar</a></li>
+    <li><a href="{% url 'restaurants:delete' post.id %}">Apagar</a></li>
+  </ul>
+</section>
+
+{% endblock content %}
