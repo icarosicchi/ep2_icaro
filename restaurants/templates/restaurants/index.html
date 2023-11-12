@@ -9,11 +9,12 @@
     <a href="{% url 'restaurants:create' %}">Adicionar Novo Restaurante</a>
   </p>
 </section>
-{% if movie_list %}
+{% if post_list %}
+
 <section class="lista-de-cards">
-  {% for movie in movie_list %}
+  {% for post in post_list %}
   <article class="card">
-    <a href="{% url 'restaurants:detail' movie.id %}"> <!-- modifique esta linha -->
+    <a href="{% url 'restaurants:detail' post.id %}"> <!-- modifique esta linha -->
         <img src="{{ post.poster_url }}" alt="Foto do Restaurante {{ post.title }}" />
     </a>
     <p>{{ post.title }}</p>
