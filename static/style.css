@@ -33,13 +33,13 @@
   }
   
   li a {
-    color: var(--secondary-color);
+    color: rgb(74, 41, 2);
     font-weight: bold;
     text-decoration: none;
   }
   
   li a:hover {
-    color: var(--secondary-color-light);
+    color: rgb(107, 60, 3);
     text-decoration: underline;
   }
   
@@ -101,12 +101,12 @@
   }
   
   a {
-    color: var(--secondary-color);
-    text-decoration: none;
+    color: rgb(74, 41, 2);
+    text-decoration: bold;
   }
   
   a:hover {
-    color: var(--secondary-color-light);
+    color: rgb(107, 60, 3);
     text-decoration: underline;
   }
   
