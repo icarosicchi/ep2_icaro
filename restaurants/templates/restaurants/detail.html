@@ -1,13 +1,12 @@
-{% extends 'base.html' %} {% block title %} {{ post.title }} ({{
-post.post_date }} {% endblock title %} {% block content %}
+{% extends 'base.html' %} {% block title %} {{ post.title }} {% endblock title %} {% block content %}
 <h2>Detalhes do Restaurante {{ post.title }}</h2>
 
 <section class="dados-de-filme">
   <img src="{{ post.poster_url }}" alt="Foto do Restaurante {{ post.title}}" />
   <ul>
-    <li>Nome: {{ post.title }}</li>
-    <li>Descrição: {{ post.content }}</li>
-    <li>Data de Postagem: {{ post.post_date }}</li>
+    <li><strong>Nome:</strong> {{ post.title }}</li>
+    <li><strong>Descrição:</strong> {{ post.content }}</li>
+    <li><strong>Data de Postagem:</strong> {{ post.post_date }}</li>
     <li><a href="{% url 'restaurants:update' post.id %}">Editar</a></li>
     <li><a href="{% url 'restaurants:delete' post.id %}">Apagar</a></li>
   </ul>

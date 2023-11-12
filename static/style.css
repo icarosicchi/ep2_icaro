@@ -138,8 +138,8 @@
   }
   
   button {
-    background-color: var(--secondary-color);
-    border: 2px solid var(--secondary-color);
+    background-color: rgb(74, 41, 2);
+    border: 2px solid rgb(74, 41, 2);
     color: var(--bg-color);
     border-radius: 5px;
     display: inline-block;
@@ -150,7 +150,7 @@
   }
   
   button:hover {
-    background-color: var(--secondary-color-light);
-    border: 2px solid var(--secondary-color-light);
+    background-color: rgb(107, 60, 3);
+    border: 2px solid rgb(107, 60, 3);
   }
   
