@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h2>Busca de Filmes por Nome</h2>
+<h2>Busca de Restaurantes por Nome</h2>
 <form action="{% url 'restaurants:search' %}">
     <p>
         <label for="id_query">Título:</label>
@@ -12,9 +12,9 @@
 
 
 <h2>Resultado da Busca</h2>
-{% if movie_list %}
+{% if post_list %}
 <section class="lista-de-cards">
-    {% for movie in movie_list %}
+    {% for post in post_list %}
     <article class="card">
         <img src="{{ post.poster_url }}" alt="Foto do Restaurante {{ post.title }}">
         <p>{{ post.title }}</p>
@@ -22,7 +22,7 @@
     {% endfor %}
 </section>
 {% else %}
-<p>Não foi encontrado nenhum filme para a busca.</p>
+<p>Não foi encontrado nenhum Restaurante para a busca.</p>
 {% endif %}
 
 {% endblock content %}

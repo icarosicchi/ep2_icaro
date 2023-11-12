@@ -1,12 +1,12 @@
 {% extends 'base.html' %} {% block content %}
-<h2>Todos os Filmes</h2>
+<h2>Todos os Restaurantes</h2>
 <section>
   <p>
-    Muitos resultados? <a href="{% url 'restaurants:search' %}">Buscar Filmes</a>
+    Muitos resultados? <a href="{% url 'restaurants:search' %}">Buscar Restaurantes</a>
   </p>
   <p>
-    Não encontrou o filme?
-    <a href="{% url 'restaurants:create' %}">Adicionar Novo Filme</a>
+    Não encontrou o restaurante?
+    <a href="{% url 'restaurants:create' %}">Adicionar Novo Restaurante</a>
   </p>
 </section>
 {% if movie_list %}
@@ -14,12 +14,12 @@
   {% for movie in movie_list %}
   <article class="card">
     <a href="{% url 'restaurants:detail' movie.id %}"> <!-- modifique esta linha -->
-        <img src="{{ movie.poster_url }}" alt="Poster do filme {{ movie.title }}" />
+        <img src="{{ post.poster_url }}" alt="Foto do Restaurante {{ post.title }}" />
     </a>
-    <p>{{ movie.title }}</p>
+    <p>{{ post.title }}</p>
   </article>
   {% endfor %}
 </section>
 {% else %}
-<p>Não foi encontrado nenhum filme.</p>
+<p>Não foi encontrado nenhum restaurante.</p>
 {% endif %} {% endblock content %}

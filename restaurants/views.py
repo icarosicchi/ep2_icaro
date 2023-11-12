@@ -1,5 +1,4 @@
 from django.http import HttpResponse
-from .temp_data import movie_data
 from django.shortcuts import render
 from django.http import HttpResponseRedirect
 from django.urls import reverse
@@ -7,25 +6,25 @@ from .models import Post
 from django.shortcuts import render, get_object_or_404
 
 
-def list_movies(request):
-    movie_list = Post.objects.all()
-    context = {'movie_list': movie_list}
+def list_posts(request):
+    post_list = Post.objects.all()
+    context = {'post_list': post_list}
     return render(request, 'restaurants/index.html', context)
 
-def detail_movie(request, movie_id):
-    post = get_object_or_404(Post, pk=movie_id)
+def detail_post(request, post_id):
+    post = get_object_or_404(Post, pk=post_id)
     context = {'post': post}
     return render(request, 'restaurants/detail.html', context)
 
-def search_movies(request):
+def search_posts(request):
     context = {}
     if request.GET.get('query', False):
         search_term = request.GET['query'].lower()
-        movie_list = Post.objects.filter(title__icontains=search_term)
-        context = {"movie_list": movie_list}
+        post_list = Post.objects.filter(title__icontains=search_term)
+        context = {"post_list": post_list}
     return render(request, 'restaurants/search.html', context)
 
-def create_movie(request):
+def create_post(request):
     if request.method == 'POST':
         post_name = request.POST['title']
         post_content = request.POST['content']
@@ -39,8 +38,8 @@ def create_movie(request):
     else:
         return render(request, 'restaurants/create.html', {})
     
-def update_movie(request, movie_id):
-    post = get_object_or_404(Post, pk=movie_id)
+def update_post(request, post_id):
+    post = get_object_or_404(Post, pk=post_id)
 
     if request.method == "POST":
         post.title = request.POST['title']
@@ -54,8 +53,8 @@ def update_movie(request, movie_id):
     return render(request, 'restaurants/update.html', context)
 
 
-def delete_movie(request, movie_id):
-    post = get_object_or_404(Post, pk=movie_id)
+def delete_post(request, post_id):
+    post = get_object_or_404(Post, pk=post_id)
 
     if request.method == "POST":
         post.delete()
