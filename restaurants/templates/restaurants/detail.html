@@ -5,8 +5,12 @@
   <img src="{{ post.poster_url }}" alt="Foto do Restaurante {{ post.title}}" />
   <ul>
     <li><strong>Nome:</strong> {{ post.title }}</li>
+    <hr>
     <li><strong>Descrição:</strong> {{ post.content }}</li>
+    <hr>
     <li><strong>Data de Postagem:</strong> {{ post.post_date }}</li>
+    <hr>
+    <br>
     <li><a href="{% url 'restaurants:update' post.id %}">Editar</a></li>
     <li><a href="{% url 'restaurants:delete' post.id %}">Apagar</a></li>
   </ul>
