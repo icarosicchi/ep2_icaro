@@ -1,0 +1,23 @@
+{% extends 'base.html' %} {% block title %} {{ post.title }} {% endblock title %} {% block content %}
+<h2>Restaurants da Categoria {{ post.title }}</h2>
+
+  <ul>
+    <li><strong>Nome:</strong> {{ category.name }}</li>
+    <hr>
+    <li><strong>Descrição:</strong> {{ category.content }}</li>
+<hr>
+
+{% if category.posts.all %}
+<section class="lista-de-cards">
+    {% for post in category.posts.all %}
+    <article class="card">
+      <a href="{% url 'restaurants:detail' post.id %}"> <!-- modifique esta linha -->
+          <img src="{{ post.poster_url }}" alt="Foto do Restaurante {{ post.title }}" />
+      </a>
+      <p>{{ post.title }}</p>
+    </article>
+    {% endfor %}
+  </section>
+  {% else %}
+  <p>Não foi encontrado nenhum restaurante.</p>
+  {% endif %} {% endblock content %}
