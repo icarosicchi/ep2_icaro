@@ -14,6 +14,30 @@
     <li><a href="{% url 'restaurants:update' post.id %}">Editar</a></li>
     <li><a href="{% url 'restaurants:delete' post.id %}">Apagar</a></li>
   </ul>
+<hr>
+</section>
+
+<section>
+    <header>
+        <h3>Comentários</h3>
+    </header>
+    <ul>    
+        {% if post.comment_set.all %}
+            {% for comment in post.comment_set.all %}
+                <figure>
+                    <blockquote>
+                        "{{ comment.text }}"
+                    </blockquote>
+                    <figcaption>—{{ comment.author }}</figcaption>
+                </figure>
+            {% endfor %}
+        {% else %}
+            <p>Ainda não existe nenhum comentário sobre este restaurante.</p>
+        {% endif %}
+    </ul>
+    <hr>
+
+    <a href="{% url 'restaurants:comment' post.pk %}"><button>Crie sua Resenha</button></a>
 </section>
 
 {% endblock content %}
