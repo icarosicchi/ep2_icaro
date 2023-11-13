@@ -4,6 +4,7 @@ from django.http import HttpResponseRedirect
 from django.urls import reverse
 from .models import Post
 from django.shortcuts import render, get_object_or_404
+from .forms import PostForm
 
 
 def list_posts(request):
@@ -26,32 +27,44 @@ def search_posts(request):
 
 def create_post(request):
     if request.method == 'POST':
-        post_name = request.POST['title']
-        post_content = request.POST['content']
-        post_poster_url = request.POST['poster_url']
-        post = Post(title=post_name,
-                      content=post_content,
-                      poster_url=post_poster_url)
-        post.save()
-        return HttpResponseRedirect(
-            reverse('restaurants:detail', args=(post.id, )))
+        form = PostForm(request.POST)
+        if form.is_valid():
+            post_title = form.cleaned_data['title']
+            post_content = form.cleaned_data['content']
+            post_poster_url = form.cleaned_data['poster_url']
+            post = Post(title=post_title,
+                          content=post_content,
+                          poster_url=post_poster_url)
+            post.save()
+            return HttpResponseRedirect(
+                reverse('restaurants:detail', args=(post.id, )))
     else:
-        return render(request, 'restaurants/create.html', {})
-    
+        form = PostForm()
+    context = {'form': form}
+    return render(request, 'restaurants/create.html', context)
+
 def update_post(request, post_id):
     post = get_object_or_404(Post, pk=post_id)
 
     if request.method == "POST":
-        post.title = request.POST['title']
-        post.content = request.POST['content']
-        post_poster_url = request.POST['poster_url']
-        post.save()
-        return HttpResponseRedirect(
-            reverse('restaurants:detail', args=(post.id, )))
+        form = PostForm(request.POST)
+        if form.is_valid():
+            post.title = form.cleaned_data['title']
+            post.content = form.cleaned_data['content']
+            post.poster_url = form.cleaned_data['poster_url']
+            post.save()
+            return HttpResponseRedirect(
+                reverse('restaurants:detail', args=(post.id, )))
+    else:
+        form = PostForm(
+            initial={
+                'title': post.title,
+                'content': post.content,
+                'poster_url': post.poster_url
+            })
 
-    context = {'post': post}
+    context = {'post': post, 'form': form}
     return render(request, 'restaurants/update.html', context)
-
 
 def delete_post(request, post_id):
     post = get_object_or_404(Post, pk=post_id)
