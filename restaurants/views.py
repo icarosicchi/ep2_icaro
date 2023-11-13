@@ -7,7 +7,7 @@ from django.shortcuts import render, get_object_or_404
 from .forms import PostForm
 from django.views import generic
 from django.urls import reverse_lazy
-from .models import Post, Comment
+from .models import Post, Comment, Category
 from .forms import PostForm, CommentForm
 
 
@@ -61,4 +61,12 @@ def create_comment(request, post_id):
     else:
         form = CommentForm()
     context = {'form': form, 'post': post}
-    return render(request, 'restaurants/comment.html', context)    
+    return render(request, 'restaurants/comment.html', context)   
+
+class CategoryListView(generic.ListView):
+    model = Category
+    template_name = 'restaurants/categories.html' 
+
+class CategoryDetailView(generic.DetailView):
+    model = Category
+    template_name = 'restaurants/detail_category.html'

@@ -10,11 +10,21 @@
     <hr>
     <li><strong>Data de Postagem:</strong> {{ post.post_date }}</li>
     <hr>
+    {% if post.category_set.all %}
+    <li>Incluso nas categorias:
+        <p> {% for category in post.category_set.all %}
+                <a href="{% url 'restaurants:detail-category' category.id %}">{{ category.name }}</a>
+                {% if not forloop.last %}, {% endif %}
+            {% endfor %}
+        </p>
+    </li>
+{% endif %}
+    <hr>
     <br>
     <li><a href="{% url 'restaurants:update' post.id %}">Editar</a></li>
     <li><a href="{% url 'restaurants:delete' post.id %}">Apagar</a></li>
   </ul>
-<hr>
+  <hr>
 </section>
 
 <section>
